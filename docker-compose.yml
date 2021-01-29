@@ -1,7 +1,7 @@
 version: "3"
 services:
   postgres:
-    image: "postgres:11"
+    image: postgres:11
     restart: always
     environment: 
       - POSTGRES_USER
@@ -12,8 +12,8 @@ services:
     volumes: 
       - ./postgres/init-data.sh:/docker-entrypoint-initdb.d/init-data.sh
   n8n:
-    image: "nextcloud"
-    restart: "always"
+    image: n8nio/n8n
+    restart: always
     environment: 
       - DB_TYPE=postgresdb
       - DB_POSTGRESDB_HOST=postgres
