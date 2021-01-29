@@ -47,4 +47,4 @@ system:
   ports:
     http: N8N_HTTP_PORT
     others:
-      - POSTGRES_PORT
+     
