@@ -46,5 +46,3 @@ system:
   #Generate public ports for the docker image
   ports:
     http: N8N_HTTP_PORT
-    others:
-     
