@@ -41,8 +41,8 @@ system:
     true
   #For collecting and storing DB in .env
   #db/user/password
-  db_credentials:
-    true
+  # db_credentials:
+  #   true
   #Generate public ports for the docker image
   ports:
     http: N8N_HTTP_PORT
