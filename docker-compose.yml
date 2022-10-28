@@ -1,7 +1,8 @@
 version: "3"
 services:
   postgres:
-    image: postgres:11
+    build: 
+      context: './postgres'
     restart: always
     environment: 
       - POSTGRES_USER=admin
