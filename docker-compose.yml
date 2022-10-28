@@ -9,8 +9,6 @@ services:
       - POSTGRES_DB=n8n
       - POSTGRES_NON_ROOT_USER=admin
       - POSTGRES_NON_ROOT_PASSWORD=password
-    volumes: 
-      - ./postgres/init-data.sh:/docker-entrypoint-initdb.d/init-data.sh
   n8n:
     image: n8nio/n8n
     restart: always
