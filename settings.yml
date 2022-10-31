@@ -22,19 +22,17 @@ user:
     #   Check to enable cron jobs
     # target:
     #   MAUTIC_RUN_CRON
-  MariaDB_version:
-    label:
-      MariaDB version
-    hint:
-      Select a MariaDB version from the list above
-    type:
-      select
-    values:
-      - "10.10"
-      - 10.9
-      - 10.7
-    target:
-      MARIADB_VERSION
+  # MariaDB_version:
+  #   label:
+  #     MariaDB version
+  #   hint:
+  #     Select a MariaDB version from the list above
+  #   type:
+  #     select
+  #   values:
+  #     - 10.7
+  #   target:
+  #     MARIADB_VERSION
 
 #System defaults
 system:
