@@ -23,8 +23,6 @@ services:
       - N8N_BASIC_AUTH_ACTIVE=false
     ports:
       - "${N8N_HTTP_PORT}:5678"
-    links: 
-      - postgres
     volumes:
       - "${APP_CODE_PATH_HOST}:/home/node/.n8n"
     # Wait 5 seconds to start n8n to make sure that PostgreSQL is ready
