@@ -1,3 +1,0 @@
-FROM postgres:11
-LABEL maintainer Naba Das <hello@get-deck.com>
-COPY init-data.sh /docker-entrypoint-initdb.d/init-data.sh

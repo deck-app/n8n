@@ -1,28 +1,26 @@
 version: "3"
 services:
-  postgres:
-    build: 
-      context: './postgres'
+  mariadb:
+    image: ghcr.io/deck-app/mariadb:${MARIADB_VERSION}
     restart: always
     environment: 
-      - POSTGRES_USER=admin
-      - POSTGRES_PASSWORD=password
-      - POSTGRES_DB=n8n
-      - POSTGRES_NON_ROOT_USER=admin
-      - POSTGRES_NON_ROOT_PASSWORD=password
+      - 'MARIADB_DATABASE=${DB_NAME}'
+      - 'MARIADB_USER=${DB_USER}'
+      - 'MARIADB_PASSWORD=${DB_PASSWORD}'
+      - 'MARIADB_ROOT_PASSWORD=${DB_ROOT_PASSWORD}'
+      - 'MARIADB_MYSQL_LOCALHOST_USER=true'
+    volumes:
+      - ${DATA_PATH_HOST}:/var/lib/mysql
   n8n:
     image: n8nio/n8n
     restart: always
     environment: 
-      - DB_TYPE=postgresdb
-      - DB_POSTGRESDB_HOST=postgres
-      - DB_POSTGRESDB_PORT=5432
-      - DB_POSTGRESDB_DATABASE=n8n
-      - DB_POSTGRESDB_USER=admin
-      - DB_POSTGRESDB_PASSWORD=password
+      - DB_TYPE=mariadb
+      - DB_MYSQLDB_HOST=mariadb
+      - DB_MYSQLDB_DATABASE=${DB_NAME}
+      - DB_MYSQLDB_USER=${DB_USER}
+      - DB_MYSQLDB_PASSWORD=${DB_PASSWORD}
       - N8N_BASIC_AUTH_ACTIVE=false
-      - N8N_BASIC_AUTH_USER
-      - N8N_BASIC_AUTH_PASSWORD
     ports:
       - "${N8N_HTTP_PORT}:5678"
     links: 
@@ -31,5 +29,5 @@ services:
       - "${APP_CODE_PATH_HOST}:/home/node/.n8n"
     # Wait 5 seconds to start n8n to make sure that PostgreSQL is ready
     # when n8n tries to connect to it
-    command: /bin/sh -c "sleep 5; n8n start"
+    command: /bin/sh -c "sleep 10; n8n start --tunnel"
 volumes: {}

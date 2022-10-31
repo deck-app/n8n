@@ -1,0 +1,23 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  n8n:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build the image n8n with mariadb
+        run: docker-compose -f "docker-compose.yml" up -d --build
+        env:
+          APP_CODE_PATH_HOST: /tmp/data
+          DATA_PATH_HOST: /tmp/db
+          DB_NAME: test
+          DB_USER: test
+          DB_PASSWORD: test
+          DB_ROOT_PASSWORD: password
+          MARIADB_VERSION: "10.10"
